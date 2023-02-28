@@ -1,36 +1,8 @@
-<div class="flex flex-col justify-center items-center h-screen">
-  <div>
-    <div class="text-md">ผู้รับผิดชอบ*</div>
-    <mat-form-field appearance="fill" class="w-[400px] relative">
-      <mat-label>เลือกผู้รับผิดชอบ</mat-label>
-      <mat-select [formControl]="toppings" multiple>
-        <mat-select-trigger>
-          {{toppings.value?.[0] || ''}}
-          <span
-            *ngIf="(toppings.value?.length || 0) > 1"
-            class="example-additional-selection"
-          >
-            (+{{ (toppings.value?.length || 0) - 1 }}
-            และคนอื่นๆ )
-          </span>
-        </mat-select-trigger>
-        <mat-option *ngFor="let topping of toppingList" [value]="topping">{{
-          topping
-        }}</mat-option>
-      </mat-select>
-    </mat-form-field>
-    <div *ngFor="let item of toppings.value; let i = index">
-      <div class="flex flex-row justify-between my-2">
-        <div class="p-2 border-l-[1px] border-y-[1px] border-blue-400 w-full">
-          {{ item }}
-        </div>
-        <div
-          class="py-2 px-4 bg-blue-400 text-white flex justify-center items-center cursor-pointer hover:bg-red-400"
-          (click)="onClickRemove(i)"
-        >
-          X
-        </div>
-      </div>
-    </div>
-  </div>
+<div class="container">
+  <app-multi-select
+    [employeeList]="employeeList"
+    [hasInput]="true"
+    [dragAndDrop]="false"
+    (onSubmit)="onSubmit($event)"
+  ></app-multi-select>
 </div>

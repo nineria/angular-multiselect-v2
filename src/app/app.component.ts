@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { Employee } from 'src/core/interface/Employee';
 
 @Component({
   selector: 'app-root',
@@ -7,28 +7,33 @@ import { FormControl } from '@angular/forms';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  toppings = new FormControl('');
-
-  toppingList: string[] = [
-    'สงวน ลิขสิทธิ์',
-    'ณรงค์ นัดใช้ปืน',
-    'ศักดิพันธ์ ชอบนอนหงาย',
-    'นิธินัย เหินเวหา',
-    'ไพรัตน์ หม้อน้ำร้อน',
-    'ลำเทียน จ้องผสมพันธุ์',
-    'บุญพอ มีเท',
-    'บุญศรัทธา มหามงคล',
-  ];
+  title: string = '';
+  employeeList: Employee[] = [];
+  selectedEmployeeList: Employee[] = [];
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    // mock update
+    this.employeeList = [
+      { id: 1, name: 'สงวน ลิขสิทธิ์', inputValue: '' },
+      { id: 2, name: 'ณรงค์ นัดใช้ปืน', inputValue: '' },
+      { id: 3, name: 'ศักดิพันธ์ ชอบนอนหงาย', inputValue: '' },
+      { id: 4, name: 'นิธินัย เหินเวหา', inputValue: '' },
+      { id: 5, name: 'ไพรัตน์ หม้อน้ำร้อน', inputValue: '' },
+      { id: 6, name: 'ลำเทียน จ้องผสมพันธุ์', inputValue: '' },
+      { id: 7, name: 'บุญพอ มีเท', inputValue: '' },
+      { id: 8, name: 'บุญศรัทธา มหามงคล', inputValue: '' },
+    ];
 
-  onClickRemove(i: any) {
-    if (!this.toppings.value) return;
+    // initial value
+    this.selectedEmployeeList = [
+      { id: 1, name: 'สงวน ลิขสิทธิ์', inputValue: '' },
+      { id: 2, name: 'ณรงค์ นัดใช้ปืน', inputValue: '' },
+    ];
+  }
 
-    let _array: any = this.toppings.value;
-    _array.splice(i, 1);
-    this.toppings.setValue(_array);
+  onSubmit(employee: Employee[]): void {
+    console.log(employee);
   }
 }

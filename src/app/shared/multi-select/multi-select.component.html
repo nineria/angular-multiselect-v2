@@ -1,0 +1,61 @@
+<div class="multi-select-container">
+  <div>
+    ผู้รับผิดชอบ
+    <span *ngIf="this.selectedEmployeeList.length === 0" class="required"
+      >*</span
+    >
+  </div>
+  <div class="multi-select-wrapper">
+    <input
+      (keyup)="onSearch()"
+      [(ngModel)]="searchText"
+      type="text"
+      placeholder="เลือกผู้รับผิดชอบ"
+    />
+    <button (click)="onShowAll()">
+      <div [class]="this.toggle ? 'rotate-180-deg' : 'rotate-0-deg'">V</div>
+    </button>
+    <ul
+      *ngIf="filteredEmployeeList.length > 0 && this.toggle"
+      class="multi-select-item-wrapper"
+    >
+      <li
+        *ngFor="let employee of filteredEmployeeList"
+        (click)="onSelectEmployee(employee)"
+        class="multi-select-item"
+      >
+        {{ employee.name }}
+      </li>
+    </ul>
+  </div>
+
+  <div
+    class="selected-item-container"
+    (cdkDropListDropped)="onDrop($event)"
+    cdkDropList
+  >
+    <div
+      cdkDrag
+      *ngFor="let employee of selectedEmployeeList; let i = index"
+      [cdkDragDisabled]="dragAndDrop"
+      class="selected-item-wrapper"
+    >
+      <div *cdkDragPlaceholder class="selected-item-placeholder"></div>
+      <div [class]="hasInput ? 'selected-item' : 'selected-item-input'">
+        <div>
+          {{ employee.name }}
+        </div>
+        <input *ngIf="hasInput" type="text" placeholder="กรอกเลขรหัสอุปกรณ์" />
+        <button (click)="onRemove(i)">X</button>
+      </div>
+    </div>
+  </div>
+
+  <button
+    (click)="onSubmitClick()"
+    [disabled]="this.selectedEmployeeList.length === 0"
+    class="submit-button"
+  >
+    SUBMIT
+  </button>
+</div>
