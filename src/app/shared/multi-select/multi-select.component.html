@@ -1,6 +1,6 @@
 <div class="multi-select-container">
   <div>
-    ผู้รับผิดชอบ
+    {{ title }}
     <span *ngIf="this.selectedEmployeeList.length === 0" class="required"
       >*</span
     >
@@ -10,7 +10,7 @@
       (keyup)="onSearch()"
       [(ngModel)]="searchText"
       type="text"
-      placeholder="เลือกผู้รับผิดชอบ"
+      [placeholder]="placeholder"
     />
     <button (click)="onShowAll()">
       <div [class]="this.toggle ? 'rotate-180-deg' : 'rotate-0-deg'">V</div>
@@ -41,7 +41,7 @@
       class="selected-item-wrapper"
     >
       <div *cdkDragPlaceholder class="selected-item-placeholder"></div>
-      <div [class]="hasInput ? 'selected-item' : 'selected-item-input'">
+      <div [class]="hasInput ? 'selected-item' : 'selected-item-no-input'">
         <div>
           {{ employee.name }}
         </div>

@@ -15,6 +15,12 @@ export class MultiSelectComponent implements OnInit {
   selectedEmployeeList: Employee[] = [];
 
   @Input()
+  title: string = '';
+
+  @Input()
+  placeholder: string = '';
+
+  @Input()
   hasInput: boolean = false;
 
   @Input()

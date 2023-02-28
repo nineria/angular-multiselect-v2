@@ -1,7 +1,10 @@
 <div class="container">
   <app-multi-select
+    title="ผู้รับผิดชอบ"
+    placeholder="เลือกผู้รับผิดชอบ"
     [employeeList]="employeeList"
-    [hasInput]="true"
+    [selectedEmployeeList]="[]"
+    [hasInput]="false"
     [dragAndDrop]="false"
     (onSubmit)="onSubmit($event)"
   ></app-multi-select>
