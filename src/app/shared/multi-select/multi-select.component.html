@@ -45,7 +45,12 @@
         <div>
           {{ employee.name }}
         </div>
-        <input *ngIf="hasInput" type="text" placeholder="กรอกเลขรหัสอุปกรณ์" />
+        <input
+          *ngIf="hasInput"
+          type="text"
+          placeholder="กรอกเลขรหัสอุปกรณ์"
+          [(ngModel)]="employee.inputValue"
+        />
         <button (click)="onRemove(i)">X</button>
       </div>
     </div>
